@@ -6,5 +6,7 @@
     //vueファイルに対しての設定
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "files.eol": "\n" //ファイルの改行コードをLFに統一
+  //ファイルの改行コードをLFに統一
+  "files.eol": "\n",
+  "javascript.format.semicolons": "insert"
 }
