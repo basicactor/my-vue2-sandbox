@@ -1,15 +1,11 @@
 <template>
-  <hello-world />
+  <div>This is Home</div>
 </template>
 
 <script>
-import HelloWorld from "../components/HelloWorld";
+import { defineComponent } from "@vue/composition-api"
 
-export default {
-  name: "Home",
-
-  components: {
-    HelloWorld,
-  },
-};
+export default defineComponent({
+  setup() {},
+})
 </script>
