@@ -1,17 +1,6 @@
 <template>
   <v-app>
     <v-app-bar app color="primary" dark>
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
-      </div>
-
       <v-spacer></v-spacer>
 
       <router-link to="/campaignList" class="white--text px-2"
@@ -19,27 +8,37 @@
       >
       <router-link to="/counter" class="white--text">counter</router-link>
 
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
+      <v-icon>mdi-open-in-new</v-icon>
     </v-app-bar>
 
     <v-main>
-      <router-view />
+      <div class="d-flex">
+        <SideNavi />
+        <router-view />
+      </div>
     </v-main>
   </v-app>
 </template>
 
 <script>
-export default {
-  name: "App",
+import { defineComponent } from "@vue/composition-api"
+import SideNavi from "@/layouts/SideNavi.vue"
 
-  data: () => ({
-    //
-  }),
-}
+export default defineComponent({
+  name: "App",
+  components: {
+    SideNavi,
+  },
+  setup() {
+    //localStorageにkey: name, value: jsonで値を追加する
+    localStorage.name = JSON.stringify({
+      name: "john",
+      height: 164,
+      weight: 86,
+    })
+    console.log("local storage", localStorage.name)
+    sessionStorage.setItem("name", "john")
+    console.log("session storage", sessionStorage.getItem("name"))
+  },
+})
 </script>
