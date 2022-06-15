@@ -1,14 +1,18 @@
 <template>
   <v-container fluid>
-    <template v-for="item in items">
-      <v-checkbox
-        v-model="selected"
-        :key="item.value"
-        :label="item.label"
-        :value="item.value"
-        @change="onChange"
-      />
-    </template>
+    <v-row justify="space-around">
+      <template v-for="item in items">
+        <v-checkbox
+          v-model="selected"
+          class="ma-4"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value"
+          dense
+          @change="onChange"
+        />
+      </template>
+    </v-row>
   </v-container>
 </template>
 
