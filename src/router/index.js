@@ -1,8 +1,8 @@
 import Vue from "vue"
 import VueRouter from "vue-router"
 import HomeView from "../views/HomeView.vue"
-import CampaignListMain from "@/views/campaignsList/Main.vue"
-import CampaignListEdit from "@/views/campaignsList/EditPage.vue"
+import TableMain from "@/views/tableViews/Main.vue"
+import TableEdit from "@/views/tableViews/EditPage.vue"
 import Counter from "@/views/storeTest/Counter"
 import Form from "@/views/forms/Form.vue"
 
@@ -15,15 +15,14 @@ const routes = [
     component: HomeView,
   },
   {
-    path: "/campaignList",
-    name: "campaignList",
-    component: CampaignListMain,
-    children: [
-      {
-        path: "edit",
-        component: CampaignListEdit,
-      },
-    ],
+    path: "/tableView",
+    name: "tableView",
+    component: TableMain,
+  },
+  {
+    path: "/tableView/:id/edit",
+    name: "tableViewEdit",
+    component: TableEdit,
   },
   {
     path: "/counter",

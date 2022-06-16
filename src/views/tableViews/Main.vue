@@ -2,10 +2,12 @@
   <div>
     <Table :headers="headers" :items="items">
       <template #actions="{ id }">
-        <v-btn icon @click="openEditPage(id)">
-          <v-icon>mdi-pencil</v-icon>
-        </v-btn>
-        <v-btn icon><v-icon>mdi-menu</v-icon></v-btn>
+        <div>{{ id }}</div>
+        <MenuInTable :id="id" @onEditClick="goToEditPage(id)">
+          <v-list-item @click="appendRow">
+            <v-list-item-title> 追加 </v-list-item-title>
+          </v-list-item>
+        </MenuInTable>
       </template>
     </Table>
 
@@ -17,8 +19,9 @@
 </template>
 
 <script>
-import { defineComponent, ref } from "@vue/composition-api"
+import { defineComponent } from "@vue/composition-api"
 import Table from "@/components/Table"
+import MenuInTable from "@/components/menus/MenuInTable.vue"
 // import EditPage from "./EditPage"
 //routerの使い方：https://qiita.com/azukiazusa/items/9f467fdea7298baf3476
 import { useRouter } from "@/plugins/router"
@@ -28,10 +31,11 @@ export default defineComponent({
   components: {
     Table,
     // EditPage,
+    MenuInTable,
   },
   setup() {
     const router = useRouter()
-    const isOpenEditPage = ref(false)
+    // const isOpenEditPage = ref(false)
 
     const campaignStore = useCampaign()
     const items = campaignStore.items
@@ -51,11 +55,8 @@ export default defineComponent({
       { text: "Iron (%)", value: "iron" },
     ]
 
-    const openEditPage = (id) => {
-      console.log("id", id)
-      // isOpenEditPage.value = true
-      router.push("/campaignList/edit")
-      console.log("edit item: ", campaignStore.getItemById(id))
+    const goToEditPage = (id) => {
+      router.push(`/tableView/${id}/edit`)
     }
 
     const appendRow = () => {
@@ -73,7 +74,25 @@ export default defineComponent({
       campaignStore.items.push(row)
     }
 
-    return { headers, items, openEditPage, isOpenEditPage, appendRow }
+    // const onEditClick = () => {
+    //   console.log("onEditClick")
+    // }
+    // const onCopyClick = () => {
+    //   console.log("onCopyClick")
+    // }
+    // const onDeleteClick = () => {
+    //   console.log("onDeleteClick")
+    // }
+
+    return {
+      headers,
+      items,
+      // menuItems,
+      // isOpenEditPage,
+      // openEditPage,
+      appendRow,
+      goToEditPage,
+    }
   },
 })
 </script>

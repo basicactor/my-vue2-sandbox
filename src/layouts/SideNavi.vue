@@ -24,7 +24,10 @@ import { defineComponent } from "@vue/composition-api"
 
 export default defineComponent({
   setup() {
-    const navis = [{ title: "form", icon: "mdi-star", link: "/form" }]
+    const navis = [
+      { title: "form", icon: "mdi-star", link: "/form" },
+      { title: "テーブル", icon: "mdi-star", link: "/tableView" },
+    ]
     return { navis }
   },
 })
