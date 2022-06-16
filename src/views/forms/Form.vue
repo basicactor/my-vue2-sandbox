@@ -1,8 +1,10 @@
 <template>
-  <div>
+  <div class="pa-6">
+    <DefaultTextField v-model="state.title" />
     <DefaultCheckbox v-model="state.checkboxSelected" :items="checkboxItems" />
     <DefaultSelect v-model="state.selectSelected" :items="selectItems" />
     <DefaultRadioBtn v-model="state.radioBtnSelected" :items="radioBtnItems" />
+    <CustomTable v-model="state.customTableObj" />
     <pre>{{ state }}</pre>
   </div>
 </template>
@@ -12,18 +14,24 @@ import { defineComponent, reactive } from "@vue/composition-api"
 import DefaultCheckbox from "@/components/checkboxes/DefaultCheckbox.vue"
 import DefaultSelect from "@/components/selects/DefaultSelect.vue"
 import DefaultRadioBtn from "@/components/radioBtns/DefaultRadioBtn.vue"
+import DefaultTextField from "@/components/textFields/DefaultTextField.vue"
+import CustomTable from "./CustomTable.vue"
 
 export default defineComponent({
   components: {
     DefaultCheckbox,
     DefaultSelect,
     DefaultRadioBtn,
+    CustomTable,
+    DefaultTextField,
   },
   setup() {
     const state = reactive({
+      title: "",
       checkboxSelected: [],
       selectSelected: "",
       radioBtnSelected: "",
+      customTableObj: {},
     })
 
     const checkboxItems = [

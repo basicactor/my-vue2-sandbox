@@ -1,10 +1,10 @@
 <template>
   <v-container fluid>
-    <v-row justify="space-around">
-      <template v-for="item in items">
+    <v-row>
+      <template v-for="(item, index) in items">
         <v-checkbox
           v-model="selected"
-          class="ma-4"
+          :class="index === 0 ? 'mr-4' : 'mx-4'"
           :key="item.value"
           :label="item.label"
           :value="item.value"
