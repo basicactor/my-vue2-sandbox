@@ -5,6 +5,7 @@
     <DefaultSelect v-model="state.selectSelected" :items="selectItems" />
     <DefaultRadioBtn v-model="state.radioBtnSelected" :items="radioBtnItems" />
     <CustomTable v-model="state.customTableObj" />
+
     <pre>{{ state }}</pre>
   </div>
 </template>
@@ -31,7 +32,8 @@ export default defineComponent({
       checkboxSelected: [],
       selectSelected: "",
       radioBtnSelected: "",
-      customTableObj: {},
+      customTableObj: [],
+      items: [{ name: "", title: "" }],
     })
 
     const checkboxItems = [

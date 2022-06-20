@@ -36,16 +36,23 @@ export default defineComponent({
     DefaultSelect,
     DefaultSlider,
   },
-  setup() {
+  props: {
+    value: Array,
+  },
+  setup(props) {
     const headers = [
       { text: "タイトル", value: "title", width: "200px" },
       { text: "数量", value: "mount" },
     ]
 
-    const tableItems = reactive([
-      { title: "", mount: "" },
-      { title: "", mount: "" },
-    ])
+    const tableItems = reactive(
+      props.value.length > 0
+        ? props.value
+        : [
+            { title: "", mount: "" },
+            { title: "", mount: "" },
+          ]
+    )
 
     const selectOptions = [
       { text: "セレクト1", value: "select1" },

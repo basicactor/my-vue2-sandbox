@@ -1,4 +1,6 @@
 <template>
+  <!-- 別々のvueコンポーネントでstoreの値を変更してみる。（グローバルstate検証) -->
+  <!-- Counter.vue とCounter.vue2を利用 -->
   <div class="d-flex">
     <div class="pa-4">
       This is Counter1

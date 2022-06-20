@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-radio-group v-model="selected" row @change="$emit('input', selected)">
+    <v-radio-group v-model="inputedValue" row dense>
       <template v-for="btn in items">
         <v-radio :key="btn.value" :label="btn.label" :value="btn.value" />
       </template>
@@ -9,16 +9,20 @@
 </template>
 
 <script>
-import { defineComponent, ref } from "@vue/composition-api"
+import { computed, defineComponent } from "@vue/composition-api"
 
 export default defineComponent({
   props: {
+    value: String,
     items: Array,
   },
-  setup() {
-    const selected = ref()
+  setup(props, { emit }) {
+    const inputedValue = computed({
+      get: () => props.value,
+      set: (newValue) => emit("input", newValue),
+    })
 
-    return { selected }
+    return { inputedValue }
   },
 })
 </script>

@@ -27,6 +27,7 @@ export default defineComponent({
     const navis = [
       { title: "form", icon: "mdi-star", link: "/form" },
       { title: "テーブル", icon: "mdi-star", link: "/tableView" },
+      { title: "ストアテスト", icon: "mdi-star", link: "/storeTest" },
     ]
     return { navis }
   },

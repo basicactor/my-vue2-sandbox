@@ -4,6 +4,7 @@ import HomeView from "../views/HomeView.vue"
 import TableMain from "@/views/tableViews/Main.vue"
 import TableEdit from "@/views/tableViews/EditPage.vue"
 import Counter from "@/views/storeTest/Counter"
+import StoreTest from "@/views/storeTest/StoreTest.vue"
 import Form from "@/views/forms/Form.vue"
 
 Vue.use(VueRouter)
@@ -28,6 +29,11 @@ const routes = [
     path: "/counter",
     name: "counter",
     component: Counter,
+  },
+  {
+    path: "/storeTest",
+    name: "storeTest",
+    component: StoreTest,
   },
   {
     path: "/form",
