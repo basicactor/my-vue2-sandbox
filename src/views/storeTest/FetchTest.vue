@@ -20,36 +20,41 @@
 
 <script>
 import { defineComponent, onBeforeMount, reactive } from "@vue/composition-api"
-import { useFetchTest } from "@/store/fetchTestStore"
-import { useRoute } from "@/plugins/router"
+import { useFetchTest } from "@/store/vueUseFetchStore"
+import { useAxiosFetch } from "@/store/axiosFetchStore"
+// import { useRoute } from "@/plugins/router"
 
 export default defineComponent({
   setup() {
-    const route = useRoute()
+    // const route = useRoute()
     const state = reactive({
       users: [],
       user: {},
       posts: [],
     })
-    const fetchStore = useFetchTest()
+    const vueUseFetchStore = useFetchTest()
+    const axiosFetchStore = useAxiosFetch()
 
     //ここに、async-awaitを書くことで、ユーザーデータが描画される。
     onBeforeMount(async () => {
       // await Promise.all([
       //   // Promise.all：一つでも失敗すると、全体がrejectedになる。ただし、複数の失敗があっても最初のエラーキャッチされない。
       //   // Promise.allSettled: 成功失敗に関わらず各々の結果を返す。ただし、エラーをはかない。
-      //   fetchStore.getUsersAsync(),
-      //   fetchStore.getUserByIdAsync(route.params.id),
-      //   fetchStore.getPostsAsync(),
+      //   vueUseFetchStore.getUsersAsync(),
+      //   vueUseFetchStore.getUserByIdAsync(route.params.id),
+      //   vueUseFetchStore.getPostsAsync(),
       // ]).then((values) => console.log(values[1]))
-      await fetchStore.getUsersAsync()
-      state.users = fetchStore.users
+      // await vueUseFetchStore.getUsersAsync()
+      // state.users = vueUseFetchStore.users
 
-      await fetchStore.getUserByIdAsync(route.params.id)
-      state.user = fetchStore.user
+      // await vueUseFetchStore.getUserByIdAsync(route.params.id)
+      // state.user = vueUseFetchStore.user
 
-      // await fetchStore.getPostsAsync()
-      state.posts = fetchStore.posts
+      // await vueUseFetchStore.getPostsAsync()
+      // state.posts = vueUseFetchStore.posts
+
+      await axiosFetchStore.getUsersAsync()
+      state.users = vueUseFetchStore.users
     })
 
     // onUpdated((e) => console.log("updated", e))
@@ -60,7 +65,7 @@ export default defineComponent({
         body: "bar",
         userId: 1,
       }
-      fetchStore.sendtPostAsync(newPost)
+      vueUseFetchStore.sendtPostAsync(newPost)
     }
 
     console.log("hahha")

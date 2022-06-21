@@ -1,7 +1,7 @@
 import { defineStore } from "pinia"
 import { useFetch } from "@vueuse/core"
-import { getUsersAsync, getUserByIdAsync } from "@/apis/users"
-import { createPostAsync } from "@/apis/posts"
+import { getUsersAsync, getUserByIdAsync } from "@/apis/vueUseFetches/users"
+import { createPostAsync } from "@/apis/vueUseFetches/posts"
 
 const baseURL = "https://jsonplaceholder.typicode.com"
 
@@ -11,11 +11,7 @@ export const useFetchTest = defineStore("fetchTest", {
     user: {},
     posts: [],
   }),
-  getters: {
-    doubledCount() {
-      return this.count * 2
-    },
-  },
+  getters: {},
   actions: {
     async getUsersAsync() {
       const res = await getUsersAsync()
