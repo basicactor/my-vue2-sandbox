@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import { defineComponent } from "@vue/composition-api"
+import { defineComponent, onErrorCaptured } from "@vue/composition-api"
 import SideNavi from "@/layouts/SideNavi.vue"
 
 export default defineComponent({
@@ -39,6 +39,13 @@ export default defineComponent({
     console.log("local storage", localStorage.name)
     sessionStorage.setItem("name", "john")
     console.log("session storage", sessionStorage.getItem("name"))
+
+    //storeでキャッチしたエラーをここでキャッチ出来た。
+    //Cannot read properties of undefinedとかもキャッチしちゃう。
+    //⇒ APIErrorクラスを作って条件分岐するのがいいかな？
+    onErrorCaptured((error) =>
+      console.log("some error occured. this is App.vue", error)
+    )
   },
 })
 </script>

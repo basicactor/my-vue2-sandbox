@@ -5,6 +5,7 @@ import TableMain from "@/views/tableViews/Main.vue"
 import TableEdit from "@/views/tableViews/EditPage.vue"
 import Counter from "@/views/storeTest/Counter"
 import StoreTest from "@/views/storeTest/StoreTest.vue"
+import FetchTest from "@/views/storeTest/FetchTest.vue"
 import Form from "@/views/forms/Form.vue"
 
 Vue.use(VueRouter)
@@ -34,6 +35,11 @@ const routes = [
     path: "/storeTest",
     name: "storeTest",
     component: StoreTest,
+  },
+  {
+    path: "/fetchTest/:id",
+    name: "fetchTest",
+    component: FetchTest,
   },
   {
     path: "/form",

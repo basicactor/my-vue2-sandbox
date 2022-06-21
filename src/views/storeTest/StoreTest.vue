@@ -13,8 +13,10 @@
 
     <CustomTable v-model="state.childObjArray" />
 
-    <pre>state: {{ state }}</pre>
-    <pre>store: {{ store }}</pre>
+    <v-btn to="/fetchTest/3" class="mt-4">Fetchテストへ</v-btn>
+
+    <!-- <pre>state: {{ state }}</pre>
+    <pre>store: {{ store }}</pre> -->
   </div>
 </template>
 
@@ -186,17 +188,17 @@ export default defineComponent({
     //[null]
     //nullの値を持っているプロパティは残る
     const objHasNull = { name: null }
-    console.log(JSON.stringify(objHasNull)) //{"name":null}
+    // console.log(JSON.stringify(objHasNull)) //{"name":null}
 
     //[空文字]
     //空文字の値を持っているプロパティは残る。
     const objHasEmptyString = { name: "" }
-    console.log(JSON.stringify(objHasEmptyString)) //{"name":""}
+    // console.log(JSON.stringify(objHasEmptyString)) //{"name":""}
 
     //[空白文字]
     //空白文字の値を持っているプロパティはそのまま残る。
     const objHasSpaceString = { name: " " }
-    console.log(JSON.stringify(objHasSpaceString)) //{"name":" "}
+    // console.log(JSON.stringify(objHasSpaceString)) //{"name":" "}
 
     //[function]
     //functionは消える

@@ -21,6 +21,8 @@ module.exports = {
     // "no-extra-semi": "error",
     // "no-unexpected-multiline": "error",
     // "no-unreachable": "error",
-    "vue/valid-v-slot": ["error", { allowModifiers: true }],
+    "vue/valid-v-slot": ["off", { allowModifiers: true }],
+    "no-throw-literal": "error", //エラーthrow時に文字だけ返すことを禁止する（エラートレース出来ないため）
+    "no-constructor-return": "error", //効果なし。なぜ？
   },
 }
