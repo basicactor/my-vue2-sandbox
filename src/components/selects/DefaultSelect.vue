@@ -7,7 +7,7 @@ import { defineComponent, computed } from "@vue/composition-api"
 
 export default defineComponent({
   props: {
-    value: [Array, String, Number],
+    value: [Array, String, Number, Boolean],
     items: Array,
   },
   setup(props, { emit }) {

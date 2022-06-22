@@ -7,6 +7,7 @@ import Counter from "@/views/storeTest/Counter"
 import StoreTest from "@/views/storeTest/StoreTest.vue"
 import FetchTest from "@/views/storeTest/FetchTest.vue"
 import Form from "@/views/forms/Form.vue"
+import DynamicForm from "@/views/dynamicForms/DynamicForm.vue"
 
 Vue.use(VueRouter)
 
@@ -45,6 +46,11 @@ const routes = [
     path: "/form",
     name: "form",
     component: Form,
+  },
+  {
+    path: "/dynamicForm",
+    name: "dynamicForm",
+    component: DynamicForm,
   },
 ]
 
