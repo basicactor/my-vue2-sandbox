@@ -15,9 +15,16 @@
                 @input="onSelectInput"
               />
             </v-row>
-            <Select0101 v-if="state.isShowSelect0101" />
+            <!-- is directiveだとidも渡せないのかな? -->
+            <!-- <Select0101 v-if="state.isShowSelect0101" />
             <Select0102 v-if="state.isShowSelect0102" />
-            <Select0103 v-if="state.isShowSelect0103" />
+            <Select0103 v-if="state.isShowSelect0103" /> -->
+            <keep-alive>
+              <component
+                :is="state.activeSelect"
+                v-bind="cardItem[Object.keys(cardItem)]"
+              />
+            </keep-alive>
           </div>
         </v-container>
       </template>
@@ -56,6 +63,7 @@ export default defineComponent({
       isShowSelect0101: false,
       isShowSelect0102: false,
       isShowSelect0103: false,
+      activeSelect: "",
     })
     const select01 = [
       { text: "オプション1", value: "option1" },
@@ -84,12 +92,16 @@ export default defineComponent({
     }
 
     const onSelectInput = (input) => {
-      state.isShowSelect0101 = false
-      state.isShowSelect0102 = false
-      state.isShowSelect0103 = false
-      if (input === "option1") state.isShowSelect0101 = true
-      else if (input === "option2") state.isShowSelect0102 = true
-      else if (input === "option3") state.isShowSelect0103 = true
+      // state.isShowSelect0101 = false
+      // state.isShowSelect0102 = false
+      // state.isShowSelect0103 = false
+      // if (input === "option1") state.isShowSelect0101 = true
+      // else if (input === "option2") state.isShowSelect0102 = true
+      // else if (input === "option3") state.isShowSelect0103 = true
+
+      if (input === "option1") state.activeSelect = "Select0101"
+      else if (input === "option2") state.activeSelect = "Select0102"
+      else if (input === "option3") state.activeSelect = "Select0103"
     }
 
     return { state, select01, cardItems, addNewCard, addNewForm, onSelectInput }
