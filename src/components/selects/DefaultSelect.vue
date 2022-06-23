@@ -1,5 +1,11 @@
 <template>
-  <v-select v-model="inputedValue" :items="items" outlined dense />
+  <v-select
+    v-model="inputedValue"
+    :items="items"
+    :placeholder="placeholder"
+    outlined
+    dense
+  />
 </template>
 
 <script>
@@ -9,6 +15,7 @@ export default defineComponent({
   props: {
     value: [Array, String, Number, Boolean],
     items: Array,
+    placeholder: String,
   },
   setup(props, { emit }) {
     const inputedValue = computed({

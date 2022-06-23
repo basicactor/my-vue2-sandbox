@@ -1,30 +1,59 @@
 <template>
   <div>
-    <DefaultCard v-for="cardItem in cardItems" :key="cardItem.id" class="mt-6">
+    <DefaultCard
+      v-for="cardItem in rootItem.cardItems"
+      :key="cardItem.id"
+      class="mt-6"
+      maxWidth="100%"
+    >
       <template #content>
+        <h2 class="py-4">アンケート</h2>
+        <CloseButton
+          delBtn
+          :style="{ right: '0', top: '0' }"
+          @click="deleteCard(cardItem.id)"
+        />
         <v-container>
           <div
-            v-for="(formItem, index) in cardItem.formItems"
+            v-for="(formItem, formIndex) in cardItem.formItems"
             :key="formItem.id"
           >
-            <hr v-if="index !== 0" class="mb-6" />
+            <v-divider v-if="formIndex > 0" class="mb-6" />
             <v-row>
               <DefaultSelect
-                v-model="state.select01"
-                :items="select01"
-                @input="onSelectInput"
+                v-model="formItem.level01"
+                :items="level01Options"
+                :style="{ 'max-width': '200px' }"
+              />
+              <CloseButton
+                delBtn
+                :style="{ right: '0' }"
+                @click="deleteForm(cardItem.id, formItem.id)"
               />
             </v-row>
-            <!-- is directiveだとidも渡せないのかな? -->
-            <!-- <Select0101 v-if="state.isShowSelect0101" />
-            <Select0102 v-if="state.isShowSelect0102" />
-            <Select0103 v-if="state.isShowSelect0103" /> -->
-            <keep-alive>
+            <Level0101
+              v-if="formItem.level01 === 'option1'"
+              :item="formItem"
+              @input="
+                (inputedItem) =>
+                  $set(cardItem.formItems, formIndex, inputedItem)
+              "
+            />
+            <Level0102
+              v-if="formItem.level01 === 'option2'"
+              :item="formItem"
+              @input="
+                (inputedItem) =>
+                  $set(cardItem.formItems, formIndex, inputedItem)
+              "
+            />
+            <Level0103 v-if="formItem.level01 === 'option3'" :item="formItem" />
+            <!-- <keep-alive>
               <component
                 :is="state.activeSelect"
                 v-bind="cardItem[Object.keys(cardItem)]"
               />
-            </keep-alive>
+            </keep-alive> -->
           </div>
         </v-container>
       </template>
@@ -33,8 +62,7 @@
       </template>
     </DefaultCard>
     <DefaultButton class="mt-10" @click="addNewCard">カード追加</DefaultButton>
-    <pre>state:{{ state }}</pre>
-    <pre>cardItems:{{ cardItems }}</pre>
+    <pre>rootItem:{{ rootItem }}</pre>
   </div>
 </template>
 
@@ -43,68 +71,73 @@ import { defineComponent, reactive } from "@vue/composition-api"
 import DefaultCard from "@/components/cards/DefaultCard"
 import DefaultButton from "@/components/buttons/DefaultButton"
 import DefaultSelect from "@/components/selects/DefaultSelect"
-import Select0101 from "./select01/Select0101"
-import Select0102 from "./select01/Select0102"
-import Select0103 from "./select01/Select0103"
+import CloseButton from "@/components/buttons/CloseButton"
+import Level0101 from "./level01/Level0101"
+import Level0102 from "./level01/Level0102"
+import Level0103 from "./level01/Level0103"
 
 export default defineComponent({
   components: {
     DefaultCard,
     DefaultButton,
     DefaultSelect,
-    Select0101,
-    Select0102,
-    Select0103,
+    CloseButton,
+    Level0101,
+    Level0102,
+    Level0103,
   },
   setup() {
-    const state = reactive({
-      select01: "",
-      select02: "",
-      isShowSelect0101: false,
-      isShowSelect0102: false,
-      isShowSelect0103: false,
-      activeSelect: "",
-    })
-    const select01 = [
+    const level01Options = [
       { text: "オプション1", value: "option1" },
       { text: "オプション2", value: "option2" },
       { text: "オプション3", value: "option3" },
     ]
 
-    const cardItems = reactive([
-      { id: "c1", formItems: [{ id: "f1", title: "haha" }] },
-    ])
+    const rootItem = reactive({
+      id: "",
+      cardItems: [{ id: "c1", formItems: [{ id: "f1", level01: "option1" }] }],
+    })
 
     const addNewCard = () => {
-      cardItems.push({
-        id: `c${cardItems.length + 1}`,
-        title: "",
-        formItems: [{ id: `f${cardItems.length + 1}`, title: "haha" }],
+      rootItem.cardItems.push({
+        id: `c${rootItem.cardItems.length + 1}`,
+        formItems: [{ id: "f1", level01: "option1" }],
       })
     }
 
     const addNewForm = (id) => {
-      const cardItem = cardItems.filter((i) => i.id === id)[0]
+      const cardItem = rootItem.cardItems.find((i) => i.id === id)
       cardItem.formItems.push({
-        id: cardItem.formItems.length + 1,
-        title: "",
+        id: `f${cardItem.formItems.length + 1}`,
       })
     }
 
-    const onSelectInput = (input) => {
-      // state.isShowSelect0101 = false
-      // state.isShowSelect0102 = false
-      // state.isShowSelect0103 = false
-      // if (input === "option1") state.isShowSelect0101 = true
-      // else if (input === "option2") state.isShowSelect0102 = true
-      // else if (input === "option3") state.isShowSelect0103 = true
-
-      if (input === "option1") state.activeSelect = "Select0101"
-      else if (input === "option2") state.activeSelect = "Select0102"
-      else if (input === "option3") state.activeSelect = "Select0103"
+    //特定カードを削除
+    const deleteCard = (cardId) => {
+      const items = rootItem.cardItems
+      items.splice(
+        items.findIndex((i) => i.id === cardId),
+        1
+      )
     }
 
-    return { state, select01, cardItems, addNewCard, addNewForm, onSelectInput }
+    //特定フォームを削除
+    const deleteForm = (cardId, formId) => {
+      const items = rootItem.cardItems.find((i) => i.id === cardId).formItems
+      items.splice(
+        items.findIndex((i) => i.id === formId),
+        1
+      )
+    }
+
+    return {
+      level01Options,
+      rootItem,
+      addNewCard,
+      addNewForm,
+      deleteCard,
+      deleteForm,
+    }
   },
 })
 </script>

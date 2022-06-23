@@ -1,5 +1,5 @@
 <template>
-  <v-card class="mx-auto" max-width="344">
+  <v-card class="mx-auto" max-width="100%" :width="width">
     <v-card-text>
       <slot name="content" />
     </v-card-text>
@@ -13,6 +13,12 @@
 import { defineComponent } from "@vue/composition-api"
 
 export default defineComponent({
+  props: {
+    width: {
+      type: [String, Number],
+      default: "600",
+    },
+  },
   setup() {},
 })
 </script>
