@@ -29,6 +29,7 @@ export default defineComponent({
       { title: "テーブル", icon: "mdi-star", link: "/tableView" },
       { title: "ストアテスト", icon: "mdi-star", link: "/storeTest" },
       { title: "ダイナミックフォーム", icon: "mdi-star", link: "/dynamicForm" },
+      { title: "カウンター", icon: "mdi-star", link: "/counter" },
     ]
     return { navis }
   },

@@ -1,5 +1,7 @@
 import Vue from "vue"
 import VueRouter from "vue-router"
+// import { useAuth } from "@/store/authStore"
+import { reactiveLocalStorage } from "@/plugins/reactiveLocalStorage"
 import HomeView from "../views/HomeView.vue"
 import TableMain from "@/views/tableViews/Main.vue"
 import TableEdit from "@/views/tableViews/EditPage.vue"
@@ -8,6 +10,7 @@ import StoreTest from "@/views/storeTest/StoreTest.vue"
 import FetchTest from "@/views/storeTest/FetchTest.vue"
 import Form from "@/views/forms/Form.vue"
 import DynamicForm from "@/views/dynamicForms/DynamicForm.vue"
+import Login from "@/views/logins/Login.vue"
 
 Vue.use(VueRouter)
 
@@ -16,6 +19,12 @@ const routes = [
     path: "/",
     name: "home",
     component: HomeView,
+  },
+  {
+    path: "/login",
+    name: "login",
+    component: Login,
+    meta: { requiresAuth: false },
   },
   {
     path: "/tableView",
@@ -51,6 +60,7 @@ const routes = [
     path: "/dynamicForm",
     name: "dynamicForm",
     component: DynamicForm,
+    meta: { requiresAuth: false },
   },
 ]
 
@@ -58,6 +68,27 @@ const router = new VueRouter({
   mode: "history",
   base: process.env.BASE_URL,
   routes,
+})
+
+const { authState } = reactiveLocalStorage()
+
+//ページ遷移毎に認証チェック
+router.beforeEach((to, from, next) => {
+  const isAuthenticated = authState.value
+
+  // メタフィールドrequiresAuthがfalseならスルー
+  if (to.matched.some((record) => record.meta.requiresAuth === false)) {
+    next()
+  }
+  // それ以外は全てのページで認証チェック
+  else if (!isAuthenticated) {
+    // 未ログインならログインページへ
+    console.log("not login")
+    // next({ path: "/login", query: { redirect: to.fullPath } })
+    next("/login")
+  } else {
+    next() // スルー
+  }
 })
 
 export default router

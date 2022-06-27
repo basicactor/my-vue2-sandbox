@@ -3,6 +3,7 @@
     v-model="inputedValue"
     :label="label"
     :placeholder="placeholder"
+    :type="type"
     clearable
     dense
     outlined
@@ -22,6 +23,14 @@ export default defineComponent({
     placeholder: {
       type: String,
       defualt: "入力してください",
+    },
+    type: {
+      type: String,
+      default: "text",
+    },
+    clearable: {
+      type: Boolean,
+      default: true,
     },
   },
 
