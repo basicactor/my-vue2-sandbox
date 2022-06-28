@@ -6,7 +6,6 @@
       ログアウト
     </v-btn>
     <router-link v-else to="/login" class="white--text">ログイン</router-link>
-    <p>{{ authStore.isAuthenticated }}</p>
   </v-app-bar>
 </template>
 

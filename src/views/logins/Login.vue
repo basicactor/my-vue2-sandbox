@@ -1,13 +1,13 @@
 <template>
   <v-sheet width="100vw" height="100vh" :style="{ position: 'absolute' }">
-    <v-card width="30%" flat class="mx-auto">
+    <v-card width="400px" elevation="1" class="mx-auto">
       <v-form class="pa-10" @submit.prevent="submit">
-        <div v-if="authStore.wrongIdPass" class="red--text">
+        <div v-if="authStore.wrongIdPass" class="red--text pb-5">
           IDまたはパスワードが間違っています。
         </div>
-        <p>id</p>
+        <label>ID</label>
         <DefaultTextField v-model="state.id" label="ID/Emailアドレス" />
-        <p>password</p>
+        <label>パスワード</label>
         <v-text-field
           v-model="state.password"
           :type="showPw ? 'text' : 'password'"
@@ -18,7 +18,6 @@
         />
 
         <DefaultButton type="submit">ログイン</DefaultButton>
-        authStore.isAuthenticated:{{ authStore.isAuthenticated }}
       </v-form>
     </v-card>
   </v-sheet>
@@ -29,10 +28,18 @@ import { defineComponent, reactive, ref } from "@vue/composition-api"
 import DefaultTextField from "@/components/textFields/DefaultTextField.vue"
 import DefaultButton from "@/components/buttons/DefaultButton.vue"
 import { useAuth } from "@/store/authStore.js"
-import { useRouter } from "@/plugins/router"
+import { useRouter, useRoute } from "@/plugins/router"
 
 export default defineComponent({
   components: { DefaultTextField, DefaultButton },
+
+  // beforeRouteEnter(to, from, next) {
+  //   if (authStore.isAuthenticated) {
+  //     router.push("/")
+  //   } else {
+  //     next()
+  //   }
+  // },
   setup() {
     const state = reactive({
       id: "",
@@ -41,12 +48,15 @@ export default defineComponent({
 
     const showPw = ref(false)
 
-    const router = useRouter()
+    const route = useRoute()
     const authStore = useAuth()
+    const router = useRouter()
 
     const submit = async () => {
       await authStore.login(state.id, state.password)
       if (authStore.isAuthenticated) {
+        const from = route.redirectedFrom
+        console.log("from", from)
         router.push("/")
       }
     }

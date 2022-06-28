@@ -76,6 +76,21 @@ const { authState } = reactiveLocalStorage()
 router.beforeEach((to, from, next) => {
   const isAuthenticated = authState.value
 
+  // if (from.matched.name === to.matched.name) {
+  //   next()
+  // }
+
+  //ログイン中にログイン画面に入れないようにする
+  if (
+    to.matched.some((record) => record.name === "login") &&
+    authState.value === true
+  ) {
+    next("/")
+  }
+
+  console.log("from.matched", from.matched)
+  console.log("to.matched", to.matched)
+
   // メタフィールドrequiresAuthがfalseならスルー
   if (to.matched.some((record) => record.meta.requiresAuth === false)) {
     next()
