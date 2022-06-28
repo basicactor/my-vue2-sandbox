@@ -1,5 +1,6 @@
 import { defineStore } from "pinia"
 import { reactiveLocalStorage } from "@/plugins/reactiveLocalStorage"
+import { postAuthAsync } from "@/apis/axios/atuh"
 
 const { authState } = reactiveLocalStorage()
 
@@ -22,15 +23,18 @@ export const useAuth = defineStore("auth", {
         this.isAuthenticated = false
       }
     },
-    login(id, pw) {
-      if (id === "ftoba" && pw === "admin") {
-        this.isAuthenticated = true
-        this.wrongIdPass = false
-        authState.value = true
-      } else {
-        this.isAuthenticated = false
-        this.wrongIdPass = true
-      }
+    async loginAsync(id, pw) {
+      const res = await postAuthAsync(id, pw)
+      this.isAuthenticated = res.isAuthenticated
+
+      // if (id === "ftoba" && pw === "admin") {
+      //   this.isAuthenticated = true
+      //   this.wrongIdPass = false
+      //   authState.value = true
+      // } else {
+      //   this.isAuthenticated = false
+      //   this.wrongIdPass = true
+      // }
     },
 
     logout() {

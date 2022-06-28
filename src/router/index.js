@@ -11,6 +11,7 @@ import FetchTest from "@/views/storeTest/FetchTest.vue"
 import Form from "@/views/forms/Form.vue"
 import DynamicForm from "@/views/dynamicForms/DynamicForm.vue"
 import Login from "@/views/logins/Login.vue"
+import UsersList from "@/views/users/UsersList"
 
 Vue.use(VueRouter)
 
@@ -60,6 +61,12 @@ const routes = [
     path: "/dynamicForm",
     name: "dynamicForm",
     component: DynamicForm,
+    meta: { requiresAuth: false },
+  },
+  {
+    path: "/usersList",
+    name: "usersList",
+    component: UsersList,
     meta: { requiresAuth: false },
   },
 ]

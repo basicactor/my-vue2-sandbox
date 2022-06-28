@@ -30,6 +30,7 @@ export default defineComponent({
       { title: "ストアテスト", icon: "mdi-star", link: "/storeTest" },
       { title: "ダイナミックフォーム", icon: "mdi-star", link: "/dynamicForm" },
       { title: "カウンター", icon: "mdi-star", link: "/counter" },
+      { title: "axiosユーザー一覧", icon: "mdi-star", link: "/usersList" },
     ]
     return { navis }
   },

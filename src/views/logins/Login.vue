@@ -53,7 +53,7 @@ export default defineComponent({
     const router = useRouter()
 
     const submit = async () => {
-      await authStore.login(state.id, state.password)
+      await authStore.loginAsync(state.id, state.password)
       if (authStore.isAuthenticated) {
         const from = route.redirectedFrom
         console.log("from", from)
