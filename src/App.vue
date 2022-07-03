@@ -2,7 +2,7 @@
   <v-app>
     <Header />
     <v-main>
-      <div class="d-flex">
+      <div>
         <SideNavi />
         <MainWrapper>
           <BaseLoading />
