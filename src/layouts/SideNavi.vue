@@ -6,7 +6,17 @@
         height="auto"
         :style="{ 'min-height': '100vh' }"
       >
-        <v-list> </v-list>
+        <v-list>
+          <v-list-item class="px-2">
+            <v-list-item-avatar>
+              <v-img
+                src="https://randomuser.me/api/portraits/women/85.jpg"
+              ></v-img>
+            </v-list-item-avatar>
+            <v-list-item-title>x tarou</v-list-item-title>
+          </v-list-item>
+        </v-list>
+        <v-divider />
 
         <v-list nav dense>
           <template v-for="navi in navis">
