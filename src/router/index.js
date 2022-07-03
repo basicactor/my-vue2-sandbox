@@ -14,6 +14,9 @@ import Login from "@/views/logins/Login.vue"
 import UsersList from "@/views/users/UsersList"
 
 Vue.use(VueRouter)
+//ログインstateをlocalStorageから取得
+const { authState } = reactiveLocalStorage()
+const isAuthenticated = authState.value
 
 const routes = [
   {
@@ -26,6 +29,11 @@ const routes = [
     name: "login",
     component: Login,
     meta: { requiresAuth: false },
+    //ログイン中にはアクセスさせない
+    // beforeEnter: (to, from, next) => {
+    //   if (isAuthenticated) next("/")
+    //   else next()
+    // },
   },
   {
     path: "/tableView",
@@ -61,15 +69,23 @@ const routes = [
     path: "/dynamicForm",
     name: "dynamicForm",
     component: DynamicForm,
-    meta: { requiresAuth: false },
+    // meta: { requiresAuth: false },
   },
   {
     path: "/usersList",
     name: "usersList",
     component: UsersList,
-    meta: { requiresAuth: false },
+    // meta: { requiresAuth: false },
   },
 ]
+
+export const goToRoute = (path) => {
+  if (path === router.currentRoute.path) {
+    return //同一ルートへのアクセスエラーをもみ消す。
+  } else {
+    router.push(path)
+  }
+}
 
 const router = new VueRouter({
   mode: "history",
@@ -77,27 +93,8 @@ const router = new VueRouter({
   routes,
 })
 
-const { authState } = reactiveLocalStorage()
-
 //ページ遷移毎に認証チェック
 router.beforeEach((to, from, next) => {
-  const isAuthenticated = authState.value
-
-  // if (from.matched.name === to.matched.name) {
-  //   next()
-  // }
-
-  //ログイン中にログイン画面に入れないようにする
-  if (
-    to.matched.some((record) => record.name === "login") &&
-    authState.value === true
-  ) {
-    next("/")
-  }
-
-  console.log("from.matched", from.matched)
-  console.log("to.matched", to.matched)
-
   // メタフィールドrequiresAuthがfalseならスルー
   if (to.matched.some((record) => record.meta.requiresAuth === false)) {
     next()
@@ -106,10 +103,13 @@ router.beforeEach((to, from, next) => {
   else if (!isAuthenticated) {
     // 未ログインならログインページへ
     console.log("not login")
-    // next({ path: "/login", query: { redirect: to.fullPath } })
-    next("/login")
+    next({ path: "/login", query: { redirect: to.fullPath }, replace: true })
   } else {
-    next() // スルー
+    if (from.name === "login") {
+      // console.log("from", from)
+
+      next()
+    } else next() // スルー
   }
 })
 

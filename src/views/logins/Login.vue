@@ -28,17 +28,27 @@ import { defineComponent, reactive, ref } from "@vue/composition-api"
 import DefaultTextField from "@/components/textFields/DefaultTextField.vue"
 import DefaultButton from "@/components/buttons/DefaultButton.vue"
 import { useAuth } from "@/store/authStore.js"
-import { useRouter, useRoute } from "@/plugins/router"
+import { useRouter } from "@/plugins/router"
 
 export default defineComponent({
   components: { DefaultTextField, DefaultButton },
 
   // beforeRouteEnter(to, from, next) {
-  //   if (authStore.isAuthenticated) {
-  //     router.push("/")
-  //   } else {
-  //     next()
-  //   }
+  //   console.log("to", to)
+  //   to = null
+  //   console.log("to2", to)
+
+  //   next((vm) => {
+  //     if (vm.$route.query.redirect?.length > 1) {
+  //       console.log("this is redirect")
+  //       to = null
+  //     }
+  //   })
+  //   // if (authStore.isAuthenticated) {
+  //   //   router.push("/")
+  //   // } else {
+  //   //   next()
+  //   // }
   // },
   setup() {
     const state = reactive({
@@ -48,16 +58,16 @@ export default defineComponent({
 
     const showPw = ref(false)
 
-    const route = useRoute()
+    // const route = useRoute()
     const authStore = useAuth()
     const router = useRouter()
 
     const submit = async () => {
       await authStore.loginAsync(state.id, state.password)
       if (authStore.isAuthenticated) {
-        const from = route.redirectedFrom
-        console.log("from", from)
+        // router.push("/").catch(() => {})//これでエラーは消せるけど遷移はしない。
         router.push("/")
+        console.log(router)
       }
     }
 

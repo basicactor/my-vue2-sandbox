@@ -26,6 +26,11 @@ export const useAuth = defineStore("auth", {
     async loginAsync(id, pw) {
       const res = await postAuthAsync(id, pw)
       this.isAuthenticated = res.isAuthenticated
+      if (this.isAuthenticated) {
+        authState.value = true
+      } else {
+        authState.value = false
+      }
 
       // if (id === "ftoba" && pw === "admin") {
       //   this.isAuthenticated = true
