@@ -1,7 +1,11 @@
 <template>
   <div class="ma-0 pa-0">
     <v-card>
-      <v-navigation-drawer permanent>
+      <v-navigation-drawer
+        permanent
+        height="auto"
+        :style="{ 'min-height': '100vh' }"
+      >
         <v-list> </v-list>
 
         <v-list nav dense>
@@ -26,11 +30,19 @@ export default defineComponent({
   setup() {
     const navis = [
       { title: "form", icon: "mdi-star", link: "/form" },
-      { title: "テーブル", icon: "mdi-star", link: "/tableView" },
-      { title: "ストアテスト", icon: "mdi-star", link: "/storeTest" },
-      { title: "ダイナミックフォーム", icon: "mdi-star", link: "/dynamicForm" },
-      { title: "カウンター", icon: "mdi-star", link: "/counter" },
-      { title: "axiosユーザー一覧", icon: "mdi-star", link: "/usersList" },
+      { title: "テーブル", icon: "mdi-table-edit", link: "/tableView" },
+      { title: "ストアテスト", icon: "mdi-database", link: "/storeTest" },
+      {
+        title: "ダイナミックフォーム",
+        icon: "mdi-text-box-edit",
+        link: "/dynamicForm",
+      },
+      { title: "カウンター", icon: "mdi-counter", link: "/counter" },
+      {
+        title: "axiosユーザー一覧",
+        icon: "mdi-account-multiple",
+        link: "/usersList",
+      },
     ]
     return { navis }
   },
