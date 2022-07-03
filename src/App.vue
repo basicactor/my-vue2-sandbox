@@ -4,7 +4,10 @@
     <v-main>
       <div class="d-flex">
         <SideNavi />
-        <router-view />
+        <MainWrapper>
+          <BaseLoading />
+          <router-view />
+        </MainWrapper>
       </div>
     </v-main>
   </v-app>
@@ -17,13 +20,18 @@ import Header from "@/layouts/Header.vue"
 // import Login from "@/views/logins/Login.vue"
 import { useAuth } from "@/store/authStore"
 // import { authTest } from "@/plugins/auth"
+import MainWrapper from "@/layouts/MainWrapper"
+import BaseLoading from "@/components/loadings/BaseLoading"
+import { useLoading } from "@/store/loadingStore"
 
 export default defineComponent({
   name: "App",
   components: {
     SideNavi,
     Header,
+    MainWrapper,
     // Login,
+    BaseLoading,
   },
   setup() {
     // //localStorageにkey: name, value: jsonで値を追加する
@@ -38,6 +46,14 @@ export default defineComponent({
 
     const { authenticate } = useAuth()
     authenticate()
+
+    const loadingStore = useLoading()
+
+    setTimeout(() => {
+      loadingStore.isLoading = false
+      console.log("1000")
+      console.log("loadingStore", loadingStore)
+    }, 1000)
 
     // const auth2 = authTest()
     // console.log("auth.state", auth2.state)
