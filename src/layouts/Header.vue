@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar app color="primary" dark>
+  <v-app-bar app color="primary" dark height="36">
     <v-spacer></v-spacer>
 
     <v-btn v-if="authStore.isAuthenticated" text @click="logout">

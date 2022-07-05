@@ -2,7 +2,6 @@
   <div>
     <Table :headers="headers" :items="items">
       <template #actions="{ id }">
-        <div>{{ id }}</div>
         <MenuInTable :id="id" @onEditClick="goToEditPage(id)">
           <v-list-item @click="appendRow">
             <v-list-item-title> 追加 </v-list-item-title>

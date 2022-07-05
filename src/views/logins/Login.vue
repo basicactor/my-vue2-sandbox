@@ -1,24 +1,48 @@
 <template>
-  <v-sheet width="100vw" height="100vh" :style="{ position: 'absolute' }">
-    <v-card width="400px" elevation="1" class="mx-auto">
-      <v-form class="pa-10" @submit.prevent="submit">
-        <div v-if="authStore.wrongIdPass" class="red--text pb-5">
-          IDまたはパスワードが間違っています。
-        </div>
-        <label>ID</label>
-        <DefaultTextField v-model="state.id" label="ID/Emailアドレス" />
-        <label>パスワード</label>
-        <v-text-field
-          v-model="state.password"
-          :type="showPw ? 'text' : 'password'"
-          outlined
-          dense
-          :append-icon="showPw ? 'mdi-eye' : 'mdi-eye-off'"
-          @click:append="showPw = !showPw"
-        />
-
-        <DefaultButton type="submit">ログイン</DefaultButton>
-      </v-form>
+  <v-sheet width="100vw" height="100vh" tag="custom-login">
+    <v-card
+      width="400px"
+      elevation="5"
+      rounded
+      class="mx-auto"
+      :style="{ top: '300px' }"
+    >
+      <v-container>
+        <v-form class="pa-10" @submit.prevent="submit">
+          <v-row v-if="authStore.wrongIdPass" class="red--text pb-5">
+            IDまたはパスワードが間違っています。
+          </v-row>
+          <v-row>
+            <DefaultTextField v-model="state.id" label="ID" />
+          </v-row>
+          <v-row>
+            <v-text-field
+              v-model="state.password"
+              :type="showPw ? 'text' : 'password'"
+              outlined
+              dense
+              label="password"
+              hide-details
+              :append-icon="showPw ? 'mdi-eye' : 'mdi-eye-off'"
+              @click:append="showPw = !showPw"
+            />
+          </v-row>
+          <v-row>
+            <SimpleCheckbox
+              :item="rememberOption"
+              labelClass="text-subtitle-2"
+            />
+          </v-row>
+          <v-row>
+            <DefaultButton type="submit" class="mt-8">ログイン</DefaultButton>
+          </v-row>
+          <v-row class="text-caption mt-4">
+            <router-link to="/password-reset">
+              パスワード忘れた場合
+            </router-link>
+          </v-row>
+        </v-form>
+      </v-container>
     </v-card>
   </v-sheet>
 </template>
@@ -27,11 +51,12 @@
 import { defineComponent, reactive, ref } from "@vue/composition-api"
 import DefaultTextField from "@/components/textFields/DefaultTextField.vue"
 import DefaultButton from "@/components/buttons/DefaultButton.vue"
+import SimpleCheckbox from "@/components/checkboxes/SimpleCheckbox"
 import { useAuth } from "@/store/authStore.js"
 import { useRouter } from "@/plugins/router"
 
 export default defineComponent({
-  components: { DefaultTextField, DefaultButton },
+  components: { DefaultTextField, DefaultButton, SimpleCheckbox },
 
   // beforeRouteEnter(to, from, next) {
   //   console.log("to", to)
@@ -71,7 +96,22 @@ export default defineComponent({
       }
     }
 
-    return { state, authStore, showPw, submit }
+    const rememberOption = {
+      label: "remember me",
+      value: false,
+    }
+
+    return { state, authStore, showPw, rememberOption, submit }
   },
 })
 </script>
+
+<style lang="scss" scoped>
+custom-login {
+  background-image: linear-gradient(120deg, #a6c0fe 0%, #f68084 100%);
+}
+
+.v-label {
+  font-size: 16px;
+}
+</style>

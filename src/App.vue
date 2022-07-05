@@ -1,9 +1,9 @@
 <template>
   <v-app>
-    <Header />
     <v-main>
+      <Header v-if="authStore.isAuthenticated" />
       <div>
-        <SideNavi />
+        <SideNavi v-if="authStore.isAuthenticated" />
         <MainWrapper>
           <BaseLoading />
           <router-view />
@@ -44,8 +44,8 @@ export default defineComponent({
     // sessionStorage.setItem("name", "john")
     // console.log("session storage", sessionStorage.getItem("name"))
 
-    const { authenticate } = useAuth()
-    authenticate()
+    const authStore = useAuth()
+    authStore.authenticate()
 
     const loadingStore = useLoading()
 
@@ -64,6 +64,18 @@ export default defineComponent({
     onErrorCaptured((error) =>
       console.log("some error occured. this is App.vue", error)
     )
+
+    return { authStore }
   },
 })
 </script>
+
+<style lang="scss">
+main {
+  // background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%); //クール
+  // background-image: linear-gradient(to top, #d299c2 0%, #fef9d7 100%);
+  // background-image: linear-gradient(-20deg, #e9defa 0%, #fbfcdb 100%);
+  background-image: linear-gradient(to right, #9795f0 0%, #fbc8d4 100%);
+  // background-image: linear-gradient(to top, #a3bded 0%, #6991c7 100%);
+}
+</style>

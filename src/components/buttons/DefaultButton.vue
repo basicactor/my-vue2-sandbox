@@ -1,5 +1,11 @@
 <template>
-  <v-btn depressed color="primary" :type="type" @click="() => $emit('click')">
+  <v-btn
+    depressed
+    color="primary"
+    :width="width"
+    :type="type"
+    @click="() => $emit('click')"
+  >
     <slot
   /></v-btn>
 </template>
@@ -12,6 +18,10 @@ export default defineComponent({
     type: {
       type: String,
       default: "button",
+    },
+    width: {
+      type: String,
+      default: "100%",
     },
   },
   setup() {},
