@@ -17,7 +17,8 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+//@ts-nocheck
 import { defineComponent } from "@vue/composition-api"
 import Table from "@/components/Table"
 import MenuInTable from "@/components/menus/MenuInTable.vue"

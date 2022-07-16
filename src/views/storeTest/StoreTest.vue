@@ -20,7 +20,8 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+//@ts-nocheck
 /* eslint-disable */
 // import { extend } from "vue"
 import { defineComponent, reactive } from "@vue/composition-api"

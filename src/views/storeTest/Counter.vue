@@ -14,19 +14,23 @@
   </div>
 </template>
 
-<script>
-import { defineComponent } from "@vue/composition-api"
+<script lang="ts">
+//@ts-nocheck
+import { defineComponent, PropType } from "@vue/composition-api"
 import { useCounter } from "@/store/counterStore.js"
-import Counter2 from "./Counter2.vue"
+
+interface User {
+  id: string
+  name: string
+}
 
 export default defineComponent({
-  components: {
-    Counter2,
+  props: {
+    users: Array as PropType<Array<User>>,
+    user: Object as PropType<User>,
   },
   setup() {
     const store = useCounter()
-
-    console.log(store)
 
     const upCount = () => {
       store.increment()

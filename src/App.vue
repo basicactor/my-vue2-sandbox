@@ -13,7 +13,8 @@
   </v-app>
 </template>
 
-<script>
+<script lang="ts">
+//@ts-nocheck
 import { defineComponent, onErrorCaptured } from "@vue/composition-api"
 import SideNavi from "@/layouts/SideNavi.vue"
 import Header from "@/layouts/Header.vue"

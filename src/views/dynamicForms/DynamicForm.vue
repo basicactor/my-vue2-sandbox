@@ -66,7 +66,8 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+//@ts-nocheck
 import { defineComponent, reactive } from "@vue/composition-api"
 import DefaultCard from "@/components/cards/DefaultCard"
 import DefaultButton from "@/components/buttons/DefaultButton"

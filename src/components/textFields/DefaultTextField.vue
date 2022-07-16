@@ -10,7 +10,8 @@
   ></v-text-field>
 </template>
 
-<script>
+<script lang="ts">
+//@ts-nocheck
 import { defineComponent, computed } from "@vue/composition-api"
 
 export default defineComponent({

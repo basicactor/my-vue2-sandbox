@@ -1,24 +1,24 @@
 import Vue from "vue"
-import VueRouter from "vue-router"
+import VueRouter, { RouteConfig } from "vue-router"
 // import { useAuth } from "@/store/authStore"
 import { reactiveLocalStorage } from "@/plugins/reactiveLocalStorage"
 import HomeView from "../views/HomeView.vue"
 import TableMain from "@/views/tableViews/Main.vue"
 import TableEdit from "@/views/tableViews/EditPage.vue"
-import Counter from "@/views/storeTest/Counter"
+import Counter from "@/views/storeTest/Counter.vue"
 import StoreTest from "@/views/storeTest/StoreTest.vue"
 import FetchTest from "@/views/storeTest/FetchTest.vue"
 import Form from "@/views/forms/Form.vue"
 import DynamicForm from "@/views/dynamicForms/DynamicForm.vue"
 import Login from "@/views/logins/Login.vue"
-import UsersList from "@/views/users/UsersList"
+import UsersList from "@/views/users/UsersList.vue"
 
 Vue.use(VueRouter)
 //ログインstateをlocalStorageから取得
 const { authState } = reactiveLocalStorage()
 const isAuthenticated = authState.value
 
-const routes = [
+const routes: Array<RouteConfig> = [
   {
     path: "/",
     name: "home",
@@ -79,7 +79,7 @@ const routes = [
   },
 ]
 
-export const goToRoute = (path) => {
+export const goToRoute = (path: string) => {
   if (path === router.currentRoute.path) {
     return //同一ルートへのアクセスエラーをもみ消す。
   } else {

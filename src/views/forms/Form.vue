@@ -10,7 +10,8 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+//@ts-nocheck
 import { defineComponent, reactive } from "@vue/composition-api"
 import DefaultCheckbox from "@/components/checkboxes/DefaultCheckbox.vue"
 import DefaultSelect from "@/components/selects/DefaultSelect.vue"

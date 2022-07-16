@@ -19,7 +19,8 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+//@ts-nocheck
 import { defineComponent, reactive } from "@vue/composition-api"
 import DefaultSelect from "@/components/selects/DefaultSelect"
 

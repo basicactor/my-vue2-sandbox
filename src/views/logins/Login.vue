@@ -47,7 +47,8 @@
   </v-sheet>
 </template>
 
-<script>
+<script lang="ts">
+//@ts-nocheck
 import { defineComponent, reactive, ref } from "@vue/composition-api"
 import DefaultTextField from "@/components/textFields/DefaultTextField.vue"
 import DefaultButton from "@/components/buttons/DefaultButton.vue"

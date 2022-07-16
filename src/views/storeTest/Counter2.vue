@@ -8,7 +8,8 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+//@ts-nocheck
 import { defineComponent } from "@vue/composition-api"
 import { useCounter } from "@/store/counterStore.js"
 

@@ -18,7 +18,8 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+//@ts-nocheck
 import { defineComponent, onBeforeMount, reactive } from "@vue/composition-api"
 import { useFetchTest } from "@/store/vueUseFetchStore"
 import { useAxiosFetch } from "@/store/axiosFetchStore"

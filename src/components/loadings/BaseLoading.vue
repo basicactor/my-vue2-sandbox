@@ -8,7 +8,8 @@
   </v-sheet>
 </template>
 
-<script>
+<script lang="ts">
+//@ts-nocheck
 import { defineComponent } from "@vue/composition-api"
 import { useLoading } from "@/store/loadingStore"
 import { storeToRefs } from "pinia"

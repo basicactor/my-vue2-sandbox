@@ -10,7 +10,8 @@
   ></v-slider>
 </template>
 
-<script>
+<script lang="ts">
+//@ts-nocheck
 import { computed, defineComponent } from "@vue/composition-api"
 
 export default defineComponent({

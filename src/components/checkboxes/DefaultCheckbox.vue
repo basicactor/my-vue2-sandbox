@@ -16,7 +16,8 @@
   </v-container>
 </template>
 
-<script>
+<script lang="ts">
+//@ts-nocheck
 import { defineComponent, ref } from "@vue/composition-api"
 
 export default defineComponent({

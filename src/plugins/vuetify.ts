@@ -1,5 +1,5 @@
 import Vue from "vue"
-import Vuetify from "vuetify/lib/framework"
+import Vuetify from "vuetify/lib"
 import colors from "vuetify/lib/util/colors" //定義済みマテリアルカラー
 
 Vue.use(Vuetify)

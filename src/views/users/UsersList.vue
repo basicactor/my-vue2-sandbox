@@ -4,7 +4,8 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+//@ts-nocheck
 import { defineComponent, onBeforeMount, reactive } from "@vue/composition-api"
 import { getUsersAsync } from "@/apis/axios/users"
 

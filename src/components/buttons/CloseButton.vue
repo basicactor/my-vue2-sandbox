@@ -6,7 +6,8 @@
   />
 </template>
 
-<script>
+<script lang="ts">
+//@ts-nocheck
 import { defineComponent } from "@vue/composition-api"
 import IconButton from "./IconButton"
 

@@ -26,7 +26,8 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+//@ts-nocheck
 import { defineComponent, reactive } from "@vue/composition-api"
 import DefaultSelect from "@/components/selects/DefaultSelect.vue"
 import DefaultSlider from "@/components/sliders/DefaultSlider.vue"

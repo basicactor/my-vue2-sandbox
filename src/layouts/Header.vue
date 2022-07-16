@@ -9,7 +9,8 @@
   </v-app-bar>
 </template>
 
-<script>
+<script lang="ts">
+//@ts-nocheck
 import { defineComponent } from "@vue/composition-api"
 import { useAuth } from "@/store/authStore.js"
 import { useRouter } from "@/plugins/router"

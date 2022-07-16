@@ -10,7 +10,8 @@
   /></v-btn>
 </template>
 
-<script>
+<script lang="ts">
+//@ts-nocheck
 import { defineComponent } from "@vue/composition-api"
 
 export default defineComponent({
