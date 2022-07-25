@@ -1,7 +1,7 @@
 import Vue from "vue"
 import VueRouter, { RouteConfig } from "vue-router"
 // import { useAuth } from "@/store/authStore"
-import { reactiveLocalStorage } from "@/plugins/reactiveLocalStorage"
+// import { reactiveLocalStorage } from "@/plugins/reactiveLocalStorage"
 import HomeView from "../views/HomeView.vue"
 import TableMain from "@/views/tableViews/Main.vue"
 import TableEdit from "@/views/tableViews/EditPage.vue"
@@ -12,11 +12,13 @@ import Form from "@/views/forms/Form.vue"
 import DynamicForm from "@/views/dynamicForms/DynamicForm.vue"
 import Login from "@/views/logins/Login.vue"
 import UsersList from "@/views/users/UsersList.vue"
+import ReactiveTest from "@/views/propsTest/reactiveTest/Parent.vue"
+import RefTest from "@/views/propsTest/refTest/Parent.vue"
 
 Vue.use(VueRouter)
 //ログインstateをlocalStorageから取得
-const { authState } = reactiveLocalStorage()
-const isAuthenticated = authState.value
+// const { authState } = reactiveLocalStorage()
+// const isAuthenticated = authState.value
 
 const routes: Array<RouteConfig> = [
   {
@@ -77,6 +79,16 @@ const routes: Array<RouteConfig> = [
     component: UsersList,
     // meta: { requiresAuth: false },
   },
+  {
+    path: "/reactiveTest",
+    name: "reactiveTest",
+    component: ReactiveTest,
+  },
+  {
+    path: "/refTest",
+    name: "refTest",
+    component: RefTest,
+  },
 ]
 
 export const goToRoute = (path: string) => {
@@ -94,23 +106,23 @@ const router = new VueRouter({
 })
 
 //ページ遷移毎に認証チェック
-router.beforeEach((to, from, next) => {
-  // メタフィールドrequiresAuthがfalseならスルー
-  if (to.matched.some((record) => record.meta.requiresAuth === false)) {
-    next()
-  }
-  // それ以外は全てのページで認証チェック
-  else if (!isAuthenticated) {
-    // 未ログインならログインページへ
-    console.log("not login")
-    next({ path: "/login", query: { redirect: to.fullPath }, replace: true })
-  } else {
-    if (from.name === "login") {
-      // console.log("from", from)
+// router.beforeEach((to, from, next) => {
+//   // メタフィールドrequiresAuthがfalseならスルー
+//   if (to.matched.some((record) => record.meta.requiresAuth === false)) {
+//     next()
+//   }
+//   // それ以外は全てのページで認証チェック
+//   else if (!isAuthenticated) {
+//     // 未ログインならログインページへ
+//     console.log("not login")
+//     next({ path: "/login", query: { redirect: to.fullPath }, replace: true })
+//   } else {
+//     if (from.name === "login") {
+//       // console.log("from", from)
 
-      next()
-    } else next() // スルー
-  }
-})
+//       next()
+//     } else next() // スルー
+//   }
+// })
 
 export default router

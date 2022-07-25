@@ -15,11 +15,10 @@
     }"
   > -->
   <v-navigation-drawer
-    class="ma-0 pa-0"
+    class="ma-0 pa-0 custom-drawer"
     expand-on-hover
     height="auto"
     fixed
-    tag="custom-drawer"
   >
     <v-list class="mt-6">
       <v-list-item class="px-2">
@@ -66,6 +65,16 @@ export default defineComponent({
         icon: "mdi-account-multiple",
         link: "/usersList",
       },
+      {
+        title: "reactiveTest",
+        icon: "mdi-account-multiple",
+        link: "/reactiveTest",
+      },
+      {
+        title: "refTest",
+        icon: "mdi-account-multiple",
+        link: "/refTest",
+      },
     ]
     return { navis }
   },
@@ -73,7 +82,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-custom-drawer {
+.custom-drawer {
   min-height: 400px;
   top: 10% !important;
   background-color: white;
