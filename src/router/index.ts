@@ -14,6 +14,8 @@ import Login from "@/views/logins/Login.vue"
 import UsersList from "@/views/users/UsersList.vue"
 import ReactiveTest from "@/views/propsTest/reactiveTest/Parent.vue"
 import RefTest from "@/views/propsTest/refTest/Parent.vue"
+import DynamicFormProvideTest from "@/views/provideInjectTest/DynamicFormProvideTest.vue"
+import ProvideInjectTest2 from "@/views/provideInjectTest2/Parent.vue"
 
 Vue.use(VueRouter)
 //ログインstateをlocalStorageから取得
@@ -88,6 +90,16 @@ const routes: Array<RouteConfig> = [
     path: "/refTest",
     name: "refTest",
     component: RefTest,
+  },
+  {
+    path: "/dynamicFormProvideTest",
+    name: "dynamicFormProvideTest",
+    component: DynamicFormProvideTest,
+  },
+  {
+    path: "/provideInjectTest2",
+    name: "provideInjectTest2",
+    component: ProvideInjectTest2,
   },
 ]
 

@@ -59,6 +59,12 @@ export default defineComponent({
         icon: "mdi-text-box-edit",
         link: "/dynamicForm",
       },
+      {
+        title: "ダイナミックフォーム(ProvideTest)",
+        icon: "mdi-star",
+        link: "/dynamicFormProvideTest",
+      },
+
       { title: "カウンター", icon: "mdi-counter", link: "/counter" },
       {
         title: "axiosユーザー一覧",
@@ -74,6 +80,11 @@ export default defineComponent({
         title: "refTest",
         icon: "mdi-account-multiple",
         link: "/refTest",
+      },
+      {
+        title: "provideInjectTest2",
+        icon: "mdi-star",
+        link: "/provideInjectTest2",
       },
     ]
     return { navis }
