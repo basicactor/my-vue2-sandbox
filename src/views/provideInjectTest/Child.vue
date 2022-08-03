@@ -57,7 +57,7 @@
       </template>
     </DefaultCard>
     <DefaultButton class="mt-10" @click="addNewCard">カード追加</DefaultButton>
-    <pre>rootItem:{{ rootItem }}</pre>
+    <!-- <pre>rootItem:{{ rootItem }}</pre> -->
   </div>
 </template>
 
@@ -74,12 +74,8 @@ import DefaultSelect from "@/components/selects/DefaultSelect.vue"
 import CloseButton from "@/components/buttons/CloseButton.vue"
 import PageOption from "./level01/PageOption.vue"
 import ParamOption from "./level01/ParamOption.vue"
-import useSegment, {
-  SegmentStore,
-  SegmentKey,
-  BaseConditonObj,
-  Condition,
-} from "./useSegment"
+import useSegment, { SegmentStore, SegmentKey } from "./useSegment"
+import { Segment, ConditionForm, ConditionValue } from "@/models/segment"
 
 export const numOpertorOptions = [
   {
@@ -111,55 +107,6 @@ export const strOpertorOptions = [
   },
 ]
 
-const newItem: Condition = {
-  id: "rootItem",
-  type: "andOr", //カード同士をつなぐ
-  operator: "and",
-  value: [
-    {
-      id: "c1",
-      type: "andOr", //フォーム同士をつなぐ
-      operator: "and",
-      value: [
-        {
-          id: "f1",
-          type: "param",
-          operator: "and",
-          value: [
-            {
-              type: "param_id",
-              operator: "eq",
-              value: "chinese",
-            },
-            {
-              type: "param_frequency",
-              operator: "eq",
-              value: "1",
-            },
-          ],
-        },
-        {
-          id: "f2",
-          type: "page",
-          operator: "and",
-          value: [
-            {
-              type: "page_id",
-              operator: "eq",
-              value: "movie",
-            },
-            {
-              type: "page_frequency",
-              operator: "ge",
-              value: "1000",
-            },
-          ],
-        },
-      ],
-    },
-  ],
-}
-
 export default defineComponent({
   components: {
     DefaultCard,
@@ -175,23 +122,11 @@ export default defineComponent({
       { text: "パラメータ", value: "param" },
     ]
 
-    provide(SegmentKey, useSegment())
     const { state } = inject(SegmentKey) as SegmentStore
 
-    setTimeout(() => {
-      //shallowコピー。逆にこれを利用する。
-      //でも第一階層のandOrが変更されてもreactiveに変更されるか？
-      //⇒別の値に代入したらコピーになるけど、この場合代入してないので、
-      //ただの値変更になる。
-
-      //問題点はconstを上書きしていること。当然型チェックも効かない。力技。。
-      // Object.assign(rootItem, newItem)
-
-      //これで解決
-      state.condition = newItem
-    }, 1000)
-
     //computedを付けないと値が反映されない。なぜ？ 子コンポーネントはcomputed使わなくても値が変更される。
+    //⇒objectリテラルを直接代入してるから、reativityが失われたのかも？
+    //⇒stateは変わっているが、rootItemが変わってない。
     const rootItem = computed(() => state.condition)
 
     // const rootItem = reactive({
@@ -199,7 +134,7 @@ export default defineComponent({
     //   cardItems: [{ id: "c1", formItems: [{ id: "f1", level01: "option1" }] }],
     // })
 
-    const pageDefultFormValue: Array<BaseConditonObj> = [
+    const pageDefultFormValue: Array<ConditionValue> = [
       //pageで使われるデフォルト値をセットしないと怒られる。
       {
         type: "page_id",
@@ -222,8 +157,8 @@ export default defineComponent({
           {
             id: "f1",
             type: "page",
-            operator: "eq",
-            value: pageDefultFormValue,
+            operator: "and",
+            value: [], //pageDefultFormValue
           },
         ],
       })
@@ -235,8 +170,8 @@ export default defineComponent({
       cardItem.value.push({
         id: `f${cardItem.value.length + 1}`,
         type: "page",
-        operator: "eq",
-        value: pageDefultFormValue,
+        operator: "and",
+        value: [], //pageDefultFormValue
       })
     }
 

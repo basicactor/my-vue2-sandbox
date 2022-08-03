@@ -14,7 +14,7 @@ import Login from "@/views/logins/Login.vue"
 import UsersList from "@/views/users/UsersList.vue"
 import ReactiveTest from "@/views/propsTest/reactiveTest/Parent.vue"
 import RefTest from "@/views/propsTest/refTest/Parent.vue"
-import DynamicFormProvideTest from "@/views/provideInjectTest/DynamicFormProvideTest.vue"
+import DynamicFormProvideTest from "@/views/provideInjectTest/ProvideParent.vue"
 import ProvideInjectTest2 from "@/views/provideInjectTest2/Parent.vue"
 
 Vue.use(VueRouter)

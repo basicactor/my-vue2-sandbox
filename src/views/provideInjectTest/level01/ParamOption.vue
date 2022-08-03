@@ -33,11 +33,9 @@
 import { defineComponent, inject, watch } from "@vue/composition-api"
 import DefaultSelect from "@/components/selects/DefaultSelect.vue"
 import DefaultTextField from "@/components/textFields/DefaultTextField.vue"
-import { SegmentStore, SegmentKey, BaseConditonObj } from "../useSegment"
-import {
-  strOpertorOptions,
-  numOpertorOptions,
-} from "../DynamicFormProvideTest.vue"
+import { SegmentStore, SegmentKey } from "../useSegment"
+import { strOpertorOptions, numOpertorOptions } from "../Child.vue"
+import { ConditionForm } from "@/models/segment"
 
 export default defineComponent({
   components: {
@@ -54,7 +52,7 @@ export default defineComponent({
     const cardItem = rootItem.value.find((i) => i.id === props.cardId)
     const formItem = cardItem?.value?.find((i) => i.id === props.formId)
 
-    const formItemValue = formItem?.value as Array<BaseConditonObj>
+    const formItemValue = formItem?.value as Array<ConditionForm>
     const food = formItemValue[0] ?? undefined
     const frequency = formItemValue[1] ?? undefined
 
@@ -64,19 +62,19 @@ export default defineComponent({
     ]
 
     //入力タイプによって数字入力か文字列入力の初期値を入れる
-    watch(
-      () => food.value,
-      () => {
-        if (food.value === "japanese") {
-          //文字列入力の初期値
-          frequency.value = ""
-        } else if (food.value === "chinese") {
-          //数字入力の初期値
-          frequency.value = 0
-        }
-      },
-      { deep: true }
-    )
+    // watch(
+    //   () => food.value,
+    //   () => {
+    //     if (food.value === "japanese") {
+    //       //文字列入力の初期値
+    //       frequency.value = ""
+    //     } else if (food.value === "chinese") {
+    //       //数字入力の初期値
+    //       frequency.value = 0
+    //     }
+    //   },
+    //   { deep: true }
+    // )
 
     return {
       food,

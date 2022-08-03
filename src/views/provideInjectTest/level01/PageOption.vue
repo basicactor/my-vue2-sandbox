@@ -26,8 +26,9 @@
 import { defineComponent, inject } from "@vue/composition-api"
 import DefaultSelect from "@/components/selects/DefaultSelect.vue"
 import DefaultTextField from "@/components/textFields/DefaultTextField.vue"
-import { SegmentStore, SegmentKey, BaseConditonObj } from "../useSegment"
-import { numOpertorOptions } from "../DynamicFormProvideTest.vue"
+import { SegmentStore, SegmentKey } from "../useSegment"
+import { numOpertorOptions } from "../Child.vue"
+import { ConditionForm } from "@/models/segment"
 
 export default defineComponent({
   components: {
@@ -42,7 +43,7 @@ export default defineComponent({
     const cardItem = rootItem.value.find((i) => i.id === props.cardId)
     const formItem = cardItem?.value?.find((i) => i.id === props.formId)
 
-    const formItemValue = formItem?.value as Array<BaseConditonObj>
+    const formItemValue = formItem?.value as Array<ConditionForm>
     const activity = formItemValue[0] ?? undefined
     const frequency = formItemValue[1] ?? undefined
 

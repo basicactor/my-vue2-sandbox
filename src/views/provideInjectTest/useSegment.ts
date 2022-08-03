@@ -1,40 +1,18 @@
 import { reactive } from "@vue/composition-api"
 import { InjectionKey } from "@vue/composition-api"
-
-export type AndOrOperatorType = "and" | "or"
-export type StrOperatorType =
-  | "eq"
-  | "ne"
-  | "startWith"
-  | "endWith"
-  | "include"
-  | "exclude"
-  | "regex"
-export type NumOperatorType = "eq" | "ne" | "gt" | "ge" | "lt" | "le" | ""
-
-export type Condition = {
-  id: string
-  type: "andOr" //root階層のandOr: カード同士をつなぐ
-  operator: AndOrOperatorType //ここはandかor以外は入らない
-  value: Array<ConditionCardObj>
-}
-
-export type ConditionCardObj = {
-  id: string
-  type: "andOr" //root階層の一つ下: フォーム同士をつなぐ
-  operator: AndOrOperatorType //ここはandかor以外は入らない
-  value?: Array<{ id: string } & BaseConditonObj> //フォームの入力オブジェクト
-}
-
-export type BaseConditonObj = {
-  type: string
-  operator: AndOrOperatorType | StrOperatorType | NumOperatorType
-  value?: string | number | Array<BaseConditonObj>
-}
+import { Segment } from "@/models/segment"
 
 export default function useSegment() {
   // 状態
-  const state = reactive<{ condition: Condition }>({
+  const state = reactive<Segment>({
+    id: "",
+    name: "",
+    description: "",
+    status: "有効",
+    uniqueUserYesterday: "0",
+    uniqueUser: "0",
+    createAt: "",
+    updateAt: "",
     condition: {
       id: "root",
       type: "andOr", //カード同士をつなぐ
@@ -50,16 +28,16 @@ export default function useSegment() {
               type: "page",
               operator: "and",
               value: [
-                {
-                  type: "page_id",
-                  operator: "eq",
-                  value: "1",
-                },
-                {
-                  type: "page_frequency",
-                  operator: "eq",
-                  value: "10",
-                },
+                // {
+                //   type: "page_id",
+                //   operator: "eq",
+                //   value: "1",
+                // },
+                // {
+                //   type: "page_frequency",
+                //   operator: "eq",
+                //   value: "10",
+                // },
               ],
             },
             {
@@ -67,16 +45,16 @@ export default function useSegment() {
               type: "param",
               operator: "and",
               value: [
-                {
-                  type: "param_id",
-                  operator: "eq",
-                  value: "1",
-                },
-                {
-                  type: "param_frequency",
-                  operator: "eq",
-                  value: "1",
-                },
+                // {
+                //   type: "param_id",
+                //   operator: "eq",
+                //   value: "1",
+                // },
+                // {
+                //   type: "param_frequency",
+                //   operator: "eq",
+                //   value: "1",
+                // },
               ],
             },
           ],
