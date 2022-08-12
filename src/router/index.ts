@@ -16,6 +16,7 @@ import ReactiveTest from "@/views/propsTest/reactiveTest/Parent.vue"
 import RefTest from "@/views/propsTest/refTest/Parent.vue"
 import DynamicFormProvideTest from "@/views/provideInjectTest/ProvideParent.vue"
 import ProvideInjectTest2 from "@/views/provideInjectTest2/Parent.vue"
+import CulterChart from "@/views/ClusterChart.vue"
 
 Vue.use(VueRouter)
 //ログインstateをlocalStorageから取得
@@ -100,6 +101,11 @@ const routes: Array<RouteConfig> = [
     path: "/provideInjectTest2",
     name: "provideInjectTest2",
     component: ProvideInjectTest2,
+  },
+  {
+    path: "/clusterChart",
+    name: "clusterChart",
+    component: CulterChart,
   },
 ]
 

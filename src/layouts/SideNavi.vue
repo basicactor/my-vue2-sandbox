@@ -86,6 +86,11 @@ export default defineComponent({
         icon: "mdi-star",
         link: "/provideInjectTest2",
       },
+      {
+        title: "clusterChart",
+        icon: "mdi-star",
+        link: "/clusterChart",
+      },
     ]
     return { navis }
   },
