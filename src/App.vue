@@ -3,7 +3,7 @@
     <v-main>
       <Header v-if="authStore.isAuthenticated" />
       <div>
-        <SideNavi v-if="authStore.isAuthenticated" />
+        <SideNavi v-if="true" />
         <MainWrapper>
           <BaseLoading />
           <router-view />
