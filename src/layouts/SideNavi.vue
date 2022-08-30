@@ -91,6 +91,11 @@ export default defineComponent({
         icon: "mdi-star",
         link: "/clusterChart",
       },
+      {
+        title: "ag-grid-table",
+        icon: "mdi-table",
+        link: "/ag-grid-table",
+      },
     ]
     return { navis }
   },

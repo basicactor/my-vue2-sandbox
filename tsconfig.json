@@ -15,7 +15,8 @@
     "baseUrl": ".",
     "types": [
       "webpack-env",
-      "vuetify" //vuetifyを入れいてる場合は追記
+      "vuetify", //vuetifyを入れいてる場合は追記
+      "ag-grid-vue"
     ],
     "paths": {
       "@/*": ["src/*"]

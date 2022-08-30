@@ -20,6 +20,11 @@
     event-pubsub "4.3.0"
     js-message "1.0.7"
 
+"@ag-grid-community/vue@^28.1.1":
+  version "28.1.1"
+  resolved "https://registry.yarnpkg.com/@ag-grid-community/vue/-/vue-28.1.1.tgz#9097aaf1a3182f9cdfca76c5d31c77bd81d3732f"
+  integrity sha512-1xjeUoPIkRs0GWfhuuDi21bK+15OBwOaw4bjytqO4F05MIQyypkzE8gUrThlVqny0xloqx5C0hSw5arVMRoBnQ==
+
 "@ampproject/remapping@^2.1.0":
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/@ampproject/remapping/-/remapping-2.2.0.tgz#56c133824780de3174aed5ab6834f3026790154d"
@@ -1054,6 +1059,21 @@ address@^1.1.2:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/address/-/address-1.2.0.tgz#d352a62c92fee90f89a693eccd2a8b2139ab02d9"
   integrity sha512-tNEZYz5G/zYunxFm7sfhAxkXEuLj3K6BKwv6ZURlsF6yiUQ65z0Q2wZW9L5cPUl9ocofGvXOdFYbFHp0+6MOig==
+
+ag-grid-community@^28.1.1:
+  version "28.1.1"
+  resolved "https://registry.yarnpkg.com/ag-grid-community/-/ag-grid-community-28.1.1.tgz#68b849ecf4c0849faa8e012003afb0923ee00d69"
+  integrity sha512-WqWELTVXMrFHnyLHhD8HqMzrns+rjMuaOWcnLY+uO+j2jFN9QEasXPdT8zepNbNeUaIdCt1f1Q9Ipx0U1evNvQ==
+
+ag-grid-enterprise@^28.1.3:
+  version "28.1.3"
+  resolved "https://registry.yarnpkg.com/ag-grid-enterprise/-/ag-grid-enterprise-28.1.3.tgz#ba0acb5ba2278622a46b76e2988e96678a975ab1"
+  integrity sha512-eI0OosjndOqyMC3qbz5OIzp0cQqXuYSYtf1Qh0YxebGC4a1qOgzmyNN3NXwU/Xu09UEPNTbPTT0bQ2btoIDZGQ==
+
+ag-grid-vue@^28.1.1:
+  version "28.1.1"
+  resolved "https://registry.yarnpkg.com/ag-grid-vue/-/ag-grid-vue-28.1.1.tgz#789d57db4b7ac51fe556ea634139ce477e9664cb"
+  integrity sha512-2dgCitVd168h1vQjEoAMlskJzr5DSo9SPqvMWf5slw9ork9kuMuDFl1Al6fMNwuRKqO8Zm1DL87olyal4KYMQA==
 
 ajv-formats@^2.1.1:
   version "2.1.1"
@@ -5014,6 +5034,11 @@ vis-network@^9.1.2:
   resolved "https://registry.yarnpkg.com/vis-network/-/vis-network-9.1.2.tgz#ddaca300a9764bbf1646a0aa03eb28fe55823ca8"
   integrity sha512-BdapguKg7sk3NvdZaDsM7T6rNhOBFz0/F4ZScxctK4klRzQPLQPTEcmbioXaZhMkkgWymzBR3lFCxL1q+eYyAw==
 
+vue-class-component@^7.2.6:
+  version "7.2.6"
+  resolved "https://registry.yarnpkg.com/vue-class-component/-/vue-class-component-7.2.6.tgz#8471e037b8e4762f5a464686e19e5afc708502e4"
+  integrity sha512-+eaQXVrAm/LldalI272PpDe3+i4mPis0ORiMYxF6Ae4hyuCh15W8Idet7wPUEs4N4YptgFHGys4UrgNQOMyO6w==
+
 vue-cli-plugin-vuetify@~2.5.1:
   version "2.5.1"
   resolved "https://registry.yarnpkg.com/vue-cli-plugin-vuetify/-/vue-cli-plugin-vuetify-2.5.1.tgz#6a3ee80c6e8d09b634ec7705422573f2ee0bc7e7"
@@ -5067,6 +5092,11 @@ vue-loader@^17.0.0:
     chalk "^4.1.0"
     hash-sum "^2.0.0"
     loader-utils "^2.0.0"
+
+vue-property-decorator@^9.1.2:
+  version "9.1.2"
+  resolved "https://registry.yarnpkg.com/vue-property-decorator/-/vue-property-decorator-9.1.2.tgz#266a2eac61ba6527e2e68a6933cfb98fddab5457"
+  integrity sha512-xYA8MkZynPBGd/w5QFJ2d/NM0z/YeegMqYTphy7NJQXbZcuU6FC6AOdUAcy4SXP+YnkerC6AfH+ldg7PDk9ESQ==
 
 vue-router@^3.5.4:
   version "3.5.4"

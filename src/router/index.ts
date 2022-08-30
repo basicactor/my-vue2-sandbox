@@ -17,6 +17,7 @@ import RefTest from "@/views/propsTest/refTest/Parent.vue"
 import DynamicFormProvideTest from "@/views/provideInjectTest/ProvideParent.vue"
 import ProvideInjectTest2 from "@/views/provideInjectTest2/Parent.vue"
 import CulterChart from "@/views/ClusterChart.vue"
+import AgGridTable from "@/views/ag-grid/AgGridTable.vue"
 
 Vue.use(VueRouter)
 //ログインstateをlocalStorageから取得
@@ -106,6 +107,11 @@ const routes: Array<RouteConfig> = [
     path: "/clusterChart",
     name: "clusterChart",
     component: CulterChart,
+  },
+  {
+    path: "/ag-grid-table",
+    name: "ag-grid-table",
+    component: AgGridTable,
   },
 ]
 
