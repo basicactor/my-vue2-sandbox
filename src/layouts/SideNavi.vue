@@ -96,6 +96,11 @@ export default defineComponent({
         icon: "mdi-table",
         link: "/ag-grid-table",
       },
+      {
+        title: "d3-sample",
+        icon: "mdi-chart",
+        link: "/d3-sample",
+      },
     ]
     return { navis }
   },
