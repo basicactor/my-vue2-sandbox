@@ -16,7 +16,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent, onMounted, ref } from "@vue/composition-api"
 import * as d3 from "d3"
 
@@ -28,7 +28,7 @@ export default defineComponent({
     //これでなぜがDragも出来る！！！
     const initView = () => {
       // Init SVG container
-      const svg = d3.select("#svg-image-zoom")
+      const svg = d3.select<Element, unknown>("#svg-image-zoom")
       const container = d3.select("#svg-image-group")
 
       // Init D3 zoom
