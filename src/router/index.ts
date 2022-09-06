@@ -16,7 +16,7 @@ import ReactiveTest from "@/views/propsTest/reactiveTest/Parent.vue"
 import RefTest from "@/views/propsTest/refTest/Parent.vue"
 import DynamicFormProvideTest from "@/views/provideInjectTest/ProvideParent.vue"
 import ProvideInjectTest2 from "@/views/provideInjectTest2/Parent.vue"
-import CulterChart from "@/views/ClusterChart.vue"
+import CulterChart from "@/views/cluster-chart/ClusterChart.vue"
 import AgGridTable from "@/views/ag-grid/AgGridTable.vue"
 import D3Sample from "@/views/d3-sample/D3Sample.vue"
 
