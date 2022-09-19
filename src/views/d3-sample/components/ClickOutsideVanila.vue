@@ -1,7 +1,7 @@
 <template>
   <MainWrapper>
     <div class="parent">
-      <div id="target-child" />
+      <div id="target-child" v-click-outside="onClickOutside" />
     </div>
   </MainWrapper>
 </template>
@@ -12,27 +12,30 @@ import { defineComponent, onMounted } from "@vue/composition-api"
 export default defineComponent({
   setup() {
     onMounted(() => {
-      document.addEventListener(
-        "click",
-        {
-          handleEvent: (e: PointerEvent) => {
-            //e.target.idとすると、idが存在しないと怒られるので、HTMLElemtn型として認識させる
-            //参考：https://qiita.com/wamei/items/43753e03821964719f31
-            const target = e.target as HTMLElement
-            console.log("target", target)
-
-            if (target.id === "target-child") {
-              console.log("clicked inside")
-            } else {
-              console.log("clicked outeside")
-            }
-          },
-        },
-        false //第3引数（useCapture) 参考：https://note.affi-sapo-sv.com/js-addeventlistener-usecapture.php
-      )
+      // document.addEventListener(
+      //   "click",
+      //   {
+      //     handleEvent: (e: PointerEvent) => {
+      //       //e.target.idとすると、idが存在しないと怒られるので、HTMLElemtn型として認識させる
+      //       //参考：https://qiita.com/wamei/items/43753e03821964719f31
+      //       const target = e.target as HTMLElement
+      //       console.log("target", target)
+      //       if (target.id === "target-child") {
+      //         console.log("clicked inside")
+      //       } else {
+      //         console.log("clicked outeside")
+      //       }
+      //     },
+      //   },
+      //   false //第3引数（useCapture) 参考：https://note.affi-sapo-sv.com/js-addeventlistener-usecapture.php
+      // )
     })
 
-    return {}
+    const onClickOutside = () => {
+      console.log("click outside")
+    }
+
+    return { onClickOutside }
   },
 })
 </script>
