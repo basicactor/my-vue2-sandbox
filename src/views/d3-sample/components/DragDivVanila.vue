@@ -1,26 +1,27 @@
 <template>
   <MainWrapper>
-    <!-- <div style="height: 600px; background-color: green"> -->
-    <!-- <v-tabs>
+    <div style="height: 600px; background-color: green">
+      <v-tabs>
         <v-tab>タブ１</v-tab>
         <v-tab>タブ２</v-tab>
-        <v-tab-item style="height: 100%"> タブ１ </v-tab-item>
+        <v-tab-item style="height: 100%">
+          <div class="parent">
+            <div
+              :style="[
+                objStyle,
+                { top: `${objState.top}px`, left: `${objState.left}px` },
+              ]"
+              @mousedown="onMousedown"
+              @mousemove="onMousemove"
+              @mouseup="onMouseup"
+              @mouseleave="onMouseup"
+            />
+          </div>
+        </v-tab-item>
         <v-tab-item> タブ２ </v-tab-item>
       </v-tabs>
-    </div> -->
-    <pre>{{ objState }}</pre>
-    <div class="parent">
-      <div
-        :style="[
-          objStyle,
-          { top: `${objState.top}px`, left: `${objState.left}px` },
-        ]"
-        @mousedown="onMousedown"
-        @mousemove="onMousemove"
-        @mouseup="onMouseup"
-        @mouseleave="onMouseup"
-      />
     </div>
+    <!-- <pre>{{ objState }}</pre> -->
   </MainWrapper>
 </template>
 
