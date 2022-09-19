@@ -45,18 +45,12 @@ export default defineComponent({
       shiftY: 0,
     })
 
+    //https://ja.javascript.info/mouse-drag-and-drop
     //https://gxy-life.com/2PC/PC/PC20220213.html
     const onMousedown = (e: MouseEvent) => {
       objState.isMousedown = true
       console.log("onMousedown")
-      console.log("down e", {
-        offsetX: e.offsetX, //自身の左上を基準点とした場合のマウスポインターのX座標。
-        offsetY: e.offsetY, //自身の左上を基準点とした場合のマウスポインターのy座標。
-        pageX: e.pageX, //ページ全体の左上を基準点とした場合の、マウスポインターのX座標
-        pageY: e.pageY, //ページ全体の左上を基準点とした場合の、マウスポインターのy座標
-        x: e.x, //pageXと同じ
-        y: e.y, //pageYと同じ
-      })
+
       objState.shiftX = e.pageX - objState.left
       objState.shiftY = e.pageY - objState.top
     }

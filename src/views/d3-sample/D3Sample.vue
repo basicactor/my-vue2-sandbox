@@ -1,5 +1,6 @@
 <template>
   <div>
+    <ClickOutsideVanila />
     <DragDivValina />
     <D3Drag />
     <TooltipCloseOutside />
@@ -17,6 +18,7 @@ import TooltipCloseOutside from "./components/TooltipCloseOutside.vue"
 import ZoomD3 from "./components/ZoomD3.vue"
 import ZoomVanila from "./components/ZoomVanila.vue"
 import DragDivValina from "./components/DragDivVanila.vue"
+import ClickOutsideVanila from "./components/ClickOutsideVanila.vue"
 
 export default defineComponent({
   components: {
@@ -26,6 +28,7 @@ export default defineComponent({
     ZoomD3,
     ZoomVanila,
     DragDivValina,
+    ClickOutsideVanila,
   },
   setup() {
     return {}
