@@ -1,5 +1,6 @@
 <template>
   <div>
+    <DragDivValina />
     <D3Drag />
     <TooltipCloseOutside />
     <SaveImage />
@@ -15,6 +16,7 @@ import SaveImage from "./components/SaveImage.vue"
 import TooltipCloseOutside from "./components/TooltipCloseOutside.vue"
 import ZoomD3 from "./components/ZoomD3.vue"
 import ZoomVanila from "./components/ZoomVanila.vue"
+import DragDivValina from "./components/DragDivVanila.vue"
 
 export default defineComponent({
   components: {
@@ -23,6 +25,7 @@ export default defineComponent({
     SaveImage,
     ZoomD3,
     ZoomVanila,
+    DragDivValina,
   },
   setup() {
     return {}
