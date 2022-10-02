@@ -19,6 +19,7 @@ import ProvideInjectTest2 from "@/views/provideInjectTest2/Parent.vue"
 import CulterChart from "@/views/cluster-chart/ClusterChart.vue"
 import AgGridTable from "@/views/ag-grid/AgGridTable.vue"
 import D3Sample from "@/views/d3-sample/D3Sample.vue"
+import InternalServerError from "@/views/InternalServerError.vue"
 
 Vue.use(VueRouter)
 //ログインstateをlocalStorageから取得
@@ -118,6 +119,11 @@ export const routes: Array<RouteConfig> = [
     path: "/d3-sample",
     name: "d3-sample",
     component: D3Sample,
+  },
+  {
+    path: "/internal-server-error",
+    name: "internal-server-error",
+    component: InternalServerError,
   },
 ]
 

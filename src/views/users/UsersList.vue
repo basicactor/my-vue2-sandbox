@@ -5,9 +5,8 @@
 </template>
 
 <script lang="ts">
-//@ts-nocheck
 import { defineComponent, onBeforeMount, reactive } from "@vue/composition-api"
-import { getUsersAsync } from "@/apis/axios/users"
+import { usersApi } from "@/apis/axios/usersApi"
 
 export default defineComponent({
   components: {},
@@ -17,8 +16,8 @@ export default defineComponent({
       users: [],
     })
     const getUsers = async () => {
-      const users = await getUsersAsync()
-      state.users = users
+      const users = await usersApi.getUsersAsync()
+      // state.users = users
     }
 
     onBeforeMount(() => {
