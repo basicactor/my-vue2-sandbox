@@ -25,7 +25,7 @@ Vue.use(VueRouter)
 // const { authState } = reactiveLocalStorage()
 // const isAuthenticated = authState.value
 
-const routes: Array<RouteConfig> = [
+export const routes: Array<RouteConfig> = [
   {
     path: "/",
     name: "home",
