@@ -5,6 +5,7 @@
       class="ag-theme-alpine"
       :grid-options="gridOptions"
     />
+    <AgGridBasic class="mt-10" />
   </MainWapper>
 </template>
 
@@ -16,11 +17,13 @@ import "ag-grid-enterprise"
 import { AgGridVue } from "ag-grid-vue"
 import { GridOptions, ColDef, PostSortRowsParams } from "ag-grid-community"
 import MainWapper from "@/layouts/MainWrapper.vue"
+import AgGridBasic from "./components/AgGridBasic.vue"
 
 export default defineComponent({
   components: {
     AgGridVue,
     MainWapper,
+    AgGridBasic,
   },
   setup() {
     //全カラムに適用される設定
