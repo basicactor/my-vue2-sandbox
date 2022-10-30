@@ -16,7 +16,7 @@ const getAsync = async (path: string) => {
   try {
     const result = await apiClient.get(path)
     // return result.data
-    throw new Error("aaa")
+    // throw new Error("aaa")
   } catch {
     //500エラーをここで判定して500エラーページに飛ばす。
     goToRoute("/internal-server-error")

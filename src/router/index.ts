@@ -20,6 +20,7 @@ import CulterChart from "@/views/cluster-chart/ClusterChart.vue"
 import AgGridTable from "@/views/ag-grid/AgGridTable.vue"
 import D3Sample from "@/views/d3-sample/D3Sample.vue"
 import InternalServerError from "@/views/InternalServerError.vue"
+import LoadExternalLibrary from "@/views/load-external-library/LoadExternalLibrary.vue"
 
 Vue.use(VueRouter)
 //ログインstateをlocalStorageから取得
@@ -119,6 +120,11 @@ export const routes: Array<RouteConfig> = [
     path: "/d3-sample",
     name: "d3-sample",
     component: D3Sample,
+  },
+  {
+    path: "/load-external-library",
+    name: "load-external-library",
+    component: LoadExternalLibrary,
   },
   {
     path: "/internal-server-error",
